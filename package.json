@@ -1,14 +1,19 @@
 {
   "name": "prisma",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "migrate": "exec prisma migrate dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "Fabricio",
   "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "5.4.2"
+  },
   "devDependencies": {
     "prisma": "^5.4.2"
   }
