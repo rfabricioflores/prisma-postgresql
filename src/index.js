@@ -1,19 +1,20 @@
+import express from 'express'
 import { PrismaClient } from "@prisma/client";
 
+
+const app = express();
 const db = new PrismaClient();
+const port = process.env.PORT || 8080;
 
-async function main() {
-    // const newUser = await db.user.create({
-    //     data: {
-    //         name: "Fabricio",
-    //         email: "me@fabricioflores.se"
-    //     }
-    // })
+app.get("/", (req, res) => {
+    res.send("Hi there!");
+})
 
-    // console.log(newUser)
-
+app.get("/users", async (req, res) => {
     const users = await db.user.findMany()
-    console.log(users)
-}
+    res.json(users)
+})
 
-main()
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
+})
