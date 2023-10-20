@@ -62,6 +62,28 @@ app.put("/users", async (req, res, next) => {
     }
 });
 
+app.delete("/users/:id", async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        if (!id) throw new AppError("No user id provided", 406);
+
+        const delUser = await db.user.delete({
+            where: {
+                id: parseInt(id)
+            }
+        });
+
+        res.json({
+            message: "User deleted succesfully",
+            data: delUser
+        });
+
+    } catch (err) {
+        next(err)
+    }
+})
+
 app.use(errorHandler);
 
 app.listen(port, () => {
