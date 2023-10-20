@@ -12,6 +12,9 @@ const errorHandler = (err, req, res, next) => {
             case 'AppError':
                 res.status(500).json({ error: err.message });
                 break;
+            case 'SyntaxError':
+                res.status(500).json({ error: "Invalid JSON, check your json content and try again." });
+                break;
             case 'PrismaClientValidationError':
                 res.status(406).json({ error: "Validation error, try again." });
                 break;
