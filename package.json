@@ -6,7 +6,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
-    "migrate": "exec prisma migrate dev"
+    "start:dev": "pnpm db:start && pnpm prisma:migrate && node --watch src/index.js",
+    "prisma:migrate": "exec prisma migrate dev --name init",
+    "prisma:studio": "exec prisma studio",
+    "db:start": "exec docker compose up -d",
+    "db:stop": "exec docker compose stop",
+    "db:delete": "exec docker compose down"
   },
   "keywords": [],
   "author": "Fabricio",
