@@ -40,6 +40,28 @@ app.post("/users", async (req, res, next) => {
 
 });
 
+app.put("/users", async (req, res, next) => {
+    try {
+        const { id, data } = req.body;
+
+        if (!id, !data) throw new AppError("You must pass an user id and the new data", 406)
+
+        const updatedUser = await db.user.update({
+            where: {
+                id,
+            },
+            data
+        })
+
+        res.json({
+            message: "User updated succesfully",
+            user: updatedUser
+        })
+    } catch (err) {
+        next(err);
+    }
+});
+
 app.use(errorHandler);
 
 app.listen(port, () => {
