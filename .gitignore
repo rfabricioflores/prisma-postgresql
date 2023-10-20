@@ -6,4 +6,3 @@ postgresData
 logs
 *.log
 pnpm-debug.log*
-prisma/migrations
